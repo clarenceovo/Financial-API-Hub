@@ -1,0 +1,17 @@
+{
+  "name": "api_nodejs_endpoint",
+  "version": "1.0.0",
+  "description": "API Server Endpoint with Docker Module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clarence Ho",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "helmet": "^5.0.2",
+    "mysql": "^2.18.1"
+  }
+}
