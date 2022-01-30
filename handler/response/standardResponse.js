@@ -10,12 +10,12 @@ function getBody(body){
 }
 
 module.exports={
-    
+
     res:(body)=>{
         return getBody(body)
 
     },
     voidParam:()=>{
-        return this.res('Invalid Parameter');
+        return this.res('Invalid/Missing Parameter');
     }
 }
