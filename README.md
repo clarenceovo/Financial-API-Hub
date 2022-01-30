@@ -4,7 +4,8 @@
 <br>
 This Express JS API aim to provide real time finacial data for downstream bot / website / dashboard
 Available Resources:
-1. Crypto Data
-2. FX Rate Data and heat map
-3. Stock Short selling data
-4. Fundamental data
+<br>
+1. Crypto Data <br>
+2. FX Rate Data and heat map <br>
+3. Stock Short selling data <br>
+4. Fundamental data <br>
