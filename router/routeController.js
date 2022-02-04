@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const cryptoDataController = require('../handler/cryptoDataController')
+const cryptoDataController = require('../handler/cryptoDataController');
+const IGDataController = require('../handler/IGDataController');
+
 router.use(function middleWare(req, res, next) {
    /* Log the Timestamp and IP  */
    /* TODO: Add AUTH validation */
@@ -9,14 +11,18 @@ router.use(function middleWare(req, res, next) {
    next();
  });
 
-//Crypto
-
+ 
 //Open Interest
 router.get('/crypto/getAvailableOITicker',cryptoDataController.getAvailableOITicker);
 router.get('/crypto/openInterestD1',cryptoDataController.get24HourOpenInterest);
 router.get('/crypto/customTimeRangeOpenInterest',cryptoDataController.customTimeRangeOpenInterest);
 router.get('/crypto/getAvailableFundingTicker',cryptoDataController.getAvailableFundingTicker);
 router.get('/crypto/getFundingRate',cryptoDataController.getFundingRate);
+
+
+//IG
+router.get('/IG/getHKMarket',IGDataController.getHKMarket);
+
 
 //Funding
 
