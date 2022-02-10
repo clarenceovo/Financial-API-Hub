@@ -7,12 +7,15 @@ async function query(query,paramList){
         console.log('Retrieving Data from Database...');
         db.poolEquityData.query(query,param,(err,data)=>{
             if(err){
-                throw err;
+                reject(err)
             }
             //console.log(data)
             resolve(data);
             
         });
+
+        
+
 
     });
 }
@@ -33,7 +36,7 @@ module.exports={
         } else{
             query_str = `SELECT date,shares,turnover FROM 
             equity_data.short_selling WHERE ticker = ? and session = ?
-            order by date asc;`
+            order by datetime asc;`
             param = [ticker,session,start,end]
         }
         if(query_str&&param)

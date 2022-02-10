@@ -6,7 +6,7 @@ async function query(query,paramList){
         console.log('Retrieving Data from Database...');
         db.poolTradingData.query(query,param,(err,data)=>{
             if(err){
-                throw err;
+               reject(err);
             }
             //console.log(data)
             resolve(data);
