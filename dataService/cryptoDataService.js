@@ -4,7 +4,7 @@ async function query(query,paramList){
     let param = paramList ?? []
     return new Promise((resolve,reject)=>{
         console.log('Retrieving Data from Database...');
-        db.query(query,param,(err,data)=>{
+        db.poolTradingData.query(query,param,(err,data)=>{
             if(err){
                 throw err;
             }

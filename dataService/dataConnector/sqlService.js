@@ -1,13 +1,22 @@
 var mysql = require('mysql');
-var dbCredential = require('../../credential/dbCredential.json')
+var dbCredentialTradingData = require('../../credential/dbCredential.json')
 
-var pool = mysql.createPool(dbCredential);
+var poolTradingData = mysql.createPool(dbCredentialTradingData['trading_data']);
+var poolEquityData = mysql.createPool(dbCredentialTradingData['equity_data']);
 
-pool.getConnection((err,connection)=> {
+poolTradingData.getConnection((err,connection)=> {
   if(err)
   throw err;
-  console.log('Database connected successfully');
+  console.log('Crpto Data Database connected successfully');
   connection.release();
 });
-
-module.exports = pool;
+poolEquityData.getConnection((err,connection)=> {
+  if(err)
+  throw err;
+  console.log('Equity Data Database connected successfully');
+  connection.release();
+});
+module.exports = {
+  poolTradingData:poolTradingData,
+  poolEquityData:poolEquityData
+}

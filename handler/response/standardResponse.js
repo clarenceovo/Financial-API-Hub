@@ -16,6 +16,6 @@ module.exports={
 
     },
     voidParam:()=>{
-        return this.res('Invalid/Missing Parameter');
+        return getBody('Invalid/Missing Parameter');
     }
 }
