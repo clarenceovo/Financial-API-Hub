@@ -36,7 +36,7 @@ module.exports={
         } else{
             query_str = `SELECT date,shares,turnover FROM 
             equity_data.short_selling WHERE ticker = ? and session = ?
-            order by datetime asc;`
+            order by date asc;`
             param = [ticker,session,start,end]
         }
         if(query_str&&param)
