@@ -21,23 +21,23 @@ async function query(query,paramList){
 module.exports={
 
     getHKTickerShortSelling:(async(ticker , session,start , end )=>{
-        var query = null;
+        var query_str = null;
         var param = null;
         if (start && end){
-            query = `SELECT date,shares,turnover FROM 
+            query_str = `SELECT date,shares,turnover FROM 
             equity_data.short_selling WHERE ticker = ? and session = ?
             AND date between ? and ?
             order by datetime asc;`
             param = [ticker,session,start,end]
 
         } else{
-            query = `SELECT date,shares,turnover FROM 
+            query_str = `SELECT date,shares,turnover FROM 
             equity_data.short_selling WHERE ticker = ? and session = ?
             order by datetime asc;`
             param = [ticker,session,start,end]
         }
-        if(query&&param)
-        return await query(query
+        if(query_str&&param)
+        return await query(query_str
                             ,param);
          
     }),
