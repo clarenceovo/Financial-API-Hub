@@ -25,10 +25,6 @@ router.get('/crypto/getFundingRate',cryptoDataController.getFundingRate);
 //IG
 
 
-
-//Funding
-
-
 //FX
 
 //Credit
