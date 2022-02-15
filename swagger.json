@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "servers": [
         {
-            "url": "18.180.162.113:9888",
+            "url": "http://18.180.162.113:9888/",
             "description": "Financial API Hub"
         }
     ],
