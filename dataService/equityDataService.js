@@ -50,7 +50,7 @@ module.exports={
                             FROM equity_data.short_selling
                             where session = 'AM'
                             GROUP BY date`
-                            ,[ticker,session]);
+                            ,[]);
          
     }),
     getHKTotalShortSelling:(async()=>{
@@ -58,7 +58,7 @@ module.exports={
                             FROM equity_data.short_selling
                             where session = 'PM'
                             GROUP BY date`
-                            ,[ticker,session]);
+                            ,[]);
          
     }),
 

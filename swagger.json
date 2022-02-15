@@ -15,7 +15,7 @@
             "email": "clarenceovo@gmail.com"
         }
     },
-    "tags": [],
+    "tags": ["Datahub"],
     "paths": {
         "/crypto/getAvailableOITicker": {
             "get": {
