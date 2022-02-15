@@ -1,59 +1,349 @@
 {
     "openapi": "3.0.0",
-    "info": {
-      "title": "User API",
-      "description": "Simple RESTful API in Node.js with TypeScript",
-      "version": "0.0.1"
-    },
     "servers": [
-      {
-        "url": "http://localhost:3000/api",
-        "description": "Local server"
-      }
-    ],
-    "paths": {
-      "/users": {
-        "get": {
-          "summary": "Return all users with list.",
-          "description": "Return all existed users.",
-          "responses": {
-            "200": {
-              "description": "A JSON array of user names",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/User"
-                    }
-                  }
-                }
-              }
-            }
-          }
+        {
+            "url": "18.180.162.113:9888",
+            "description": "Financial API Hub"
         }
-      }
+    ],
+    "info": {
+        "description": "",
+        "version": "1.0.0",
+        "title": "Financial API Hub",
+        "termsOfService": "",
+        "contact": {
+            "email": "clarenceovo@gmail.com"
+        }
+    },
+    "tags": [],
+    "paths": {
+        "/crypto/getAvailableOITicker": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "FTX"
+                        },
+                        "description": "name of crypto exchange"
+                    }
+                ],
+                "operationId": "/crypto/getAvailableOITicker",
+                "responses": {
+                    "default": {
+                        "description": "Default response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crypto/openInterestD1": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "name of crypto exchange"
+                    },
+                    {
+                        "name": "ticker",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Ticker of the contract (Eg: BTC-PERP)"
+                    }
+                ],
+                "operationId": "/crypto/openInterestD1",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        },
+        "/equity/HK/getShortSellingByTicker": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "ticker",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "1"
+                        },
+                        "description": "numerical ticker of HK Stock "
+                    },
+                    {
+                        "name": "session",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "PM",
+                            "enum": []
+                        },
+                        "description": "AM : Morning short selling data\nPM : Daily Short selling data"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Optional Field (YYYY-MM-DD)"
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Optional Field (YYYY-MM-DD)"
+                    }
+                ],
+                "operationId": "/equity/HK/getShortSellingByTicker",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        },
+        "/equity/HK/getDailyMorningShortSelling": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "operationId": "/equity/HK/getDailyMorningShortSelling",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        },
+        "/equity/HK/getDailyTotalShortSelling": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "operationId": "/equity/HK/getDailyTotalShortSelling",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        },
+        "/crypto/customTimeRangeOpenInterest": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "FTX"
+                        },
+                        "description": "name of crypto exchange"
+                    },
+                    {
+                        "name": "ticker",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "BTC-PERP"
+                        },
+                        "description": "ticker of contract"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "2022-01-01"
+                        },
+                        "description": "optional field .(YYYY-MM-DD)"
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "2022-01-03"
+                        },
+                        "description": "optional field .(YYYY-MM-DD)"
+                    }
+                ],
+                "operationId": "",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        },
+        "/crypto/getAvailableFundingTicker": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "name of crypto exchange"
+                    }
+                ],
+                "operationId": "/crypto/getAvailableFundingTicker",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        },
+        "/crypto/getFundingRate": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "name of crypto exchange"
+                    },
+                    {
+                        "name": "ticker",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ticker of contracts (eg BTC-PERP)"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "optional field .(YYYY-MM-DD)"
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "optional field .(YYYY-MM-DD)"
+                    }
+                ],
+                "operationId": "",
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    }
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "",
+        "url": "18.180.162.113:9888/api"
     },
     "components": {
-      "schemas": {
-        "User": {
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "int64",
-              "example": 1
+        "schemas": {},
+        "requestBodies": {
+            "Pet": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    },
+                    "application/xml": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    }
+                },
+                "description": "Pet object that needs to be added to the store",
+                "required": true
             },
-            "username": {
-              "type": "string",
-              "example": "Jimmy"
-            },
-            "email": {
-              "type": "string",
-              "example": "test@test.com"
+            "UserArray": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "description": "List of user object",
+                "required": true
             }
-          },
-          "required": ["id", "username", "email"]
-        }
-      }
-    }
-  }
+        },
+        "securitySchemes": {
+            "petstore_auth": {
+                "type": "oauth2",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+                        "scopes": {
+                            "write:pets": "modify pets in your account",
+                            "read:pets": "read your pets"
+                        }
+                    }
+                }
+            },
+            "api_key": {
+                "type": "apiKey",
+                "name": "api_key",
+                "in": "header"
+            }
+        },
+        "links": {},
+        "callbacks": {}
+    },
+    "security": []
+}
