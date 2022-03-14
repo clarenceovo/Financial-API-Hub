@@ -8,6 +8,7 @@ module.exports={
         let start = req.query.start ?? null;
         let end = req.query.end ?? null;
         if (ticker){
+            console.log("Ticker:"+ticker);
             let data = await equityDataService.getHKTickerShortSelling(ticker,session,start,end);
             return res.json(responseParser.res(data));
         }else{

@@ -90,6 +90,8 @@ module.exports={
          
          if (exchange){
             let data = await cryptoDataService.getFundingRate(exchange,ticker,start,end);
+            
+            
             return res.json(responseParser.res(data));
          } else {   
             return res.json(responseParser.voidParam());
