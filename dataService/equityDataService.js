@@ -61,5 +61,12 @@ module.exports={
                             ,[]);
          
     }),
+    getHSIFutureOI:(async()=>{
+        return await query(`SELECT trading_date as date, current_price , 
+                            current_volume as volume , open_interest 
+                            FROM equity_data.future_oi_hsi`
+                            ,[]);
+         
+    }),
 
 }

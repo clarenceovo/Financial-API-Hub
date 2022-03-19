@@ -24,6 +24,10 @@ module.exports={
         let data = await equityDataService.getHKTotalShortSelling();
         return res.json(responseParser.res(data));
     },
+    getHSIFutureOI:async(req,res)=>{
+        let data = await equityDataService.getHSIFutureOI();
+        return res.json(responseParser.res(data));
+    },
 
 
 

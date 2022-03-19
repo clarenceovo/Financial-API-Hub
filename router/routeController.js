@@ -35,6 +35,8 @@ router.get('/crypto/getFundingRate',cryptoDataController.getFundingRate);
 router.get('/equity/HK/getShortSellingByTicker',equityDataController.getShortSellingByTicker);
 router.get('/equity/HK/getDailyMorningShortSelling',equityDataController.getDailyMorningShortSelling);
 router.get('/equity/HK/getDailyTotalShortSelling',equityDataController.getDailyTotalShortSelling);
+router.get('/equity/HK/getHSIFutureOI',equityDataController.getHSIFutureOI);
+
 
 
 //US Stock
