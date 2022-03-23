@@ -76,7 +76,7 @@ module.exports={
                             FROM equity_data.stock_option_oi
                             WHERE stock_id = ? and  contract_month =?`;
             var param = [ticker,month];
-            if(strike != null &&typeof(x) === 'number'){
+            if(strike != null){
                 query_str+=` AND strike = ? `;
                 param.push(strike)
             }
