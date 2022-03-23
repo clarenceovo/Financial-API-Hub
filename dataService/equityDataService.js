@@ -70,7 +70,7 @@ module.exports={
     }),
     getHSIStockOptionOI:(async(ticker,strike,type,month,start,end)=>{
         try{
-            var query_str = `SELECT record_date as date ,DATE_FORMAT(contract_month, '%Y-%m') AS contract_month,
+            var query_str = `SELECT record_date as date ,DATE_FORMAT(contract_month, '%Y-%m') AS contract_month,type,
                             strike,open , high ,low ,close ,
                             iv as implied_vol , open_interest , oi_change
                             FROM equity_data.stock_option_oi
