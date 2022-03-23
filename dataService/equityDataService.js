@@ -68,5 +68,33 @@ module.exports={
                             ,[]);
          
     }),
+    getHSIStockOptionOI:(async(ticker,strike,type,month,start,end)=>{
+        try{
+            var query_str = `SELECT record_date as date ,DATE_FORMAT(contract_month, '%Y-%m') AS contract_month,
+                            strike,open , high ,low ,close ,
+                            iv as implied_vol , open_interest , oi_change
+                            FROM equity_data.stock_option_oi
+                            WHERE stock_id = ? and  contract_month =?`;
+            var param = [ticker,month];
+            if(strike != null &&typeof(x) === 'number'){
+                query_str+=` AND strike = ? `;
+                param.push(strike)
+            }
+            if(type != null && ['C','P'].includes(type)){
+                console.log(type);
+                query_str+=` AND type = ? `;
+                param.push(type)
+            }
+            if(start != null && end != null){
+                query_str+=` AND  record_date between ? and ?`;
+                param.push(start);
+                param.push(end);
+            }
+            return await query(query_str,param);
+        }catch{
+            return null;
+        }
+         
+    }),
 
 }
