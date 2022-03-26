@@ -35,7 +35,7 @@ module.exports={
         let type =req.query.type ?? null;
         let month=req.query.month ?? null;
         let start=req.query.start ?? null;
-        let end=req.query.from ?? null;
+        let end=req.query.end ?? null;
 
         let data = await equityDataService.getHSIStockOptionOI(ticker,strike,type,month,start,end);
         if (data != null)

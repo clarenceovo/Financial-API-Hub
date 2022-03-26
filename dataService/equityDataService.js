@@ -90,7 +90,7 @@ module.exports={
                 param.push(start);
                 param.push(end);
             }
-            console.log(query_str)
+            //console.log(query_str)
             return await query(query_str,param);
         }catch{
             return null;
