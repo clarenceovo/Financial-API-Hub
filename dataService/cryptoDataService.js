@@ -15,6 +15,21 @@ async function query(query,paramList){
 
     });
 }
+async function crypto_query(query,paramList){
+    let param = paramList ?? []
+    return new Promise((resolve,reject)=>{
+        console.log('Retrieving Data from Database...');
+        db.poolTradingData.query(query,param,(err,data)=>{
+            if(err){
+               reject(err);
+            }
+            //console.log(data)
+            resolve(data);
+            
+        });
+
+    });
+}
 
 module.exports={
 
@@ -64,7 +79,7 @@ module.exports={
     
         }),
     getHistData:(async(exchange,ticker,start,end)=>{
-        return await query(`SELECT datetime as date ,open , 
+        return await crypto_query(`SELECT datetime as date ,open , 
                             high,low,close,volume FROM crypto_data.data_table a
                             left join ticker_table b on a.ticker_id = b.ticker_id
                             where exchange = ? and contract =?
