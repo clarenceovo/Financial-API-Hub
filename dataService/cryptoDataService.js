@@ -63,6 +63,18 @@ module.exports={
                             ,[exchange,ticker,start,end]);
     
         }),
-    //`select * from open_interest where exchange = ? and contract =? order by datetime desc limit 10 `
+    getHistData:(async(exchange,ticker,start,end)=>{
+        return await query(`SELECT datetime as date ,open , 
+                            high,low,close,volume FROM crypto_data.data_table a
+                            left join ticker_table b on a.ticker_id = b.ticker_id
+                            where exchange = ? and contract =?
+                            AND datetime between ? AND ?
+                            order by datetime asc  `
+        ,[exchange,ticker,start,end]);
+
+
+
+
+    })
 
 }
