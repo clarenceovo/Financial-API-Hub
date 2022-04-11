@@ -19,7 +19,7 @@ async function crypto_query(query,paramList){
     let param = paramList ?? []
     return new Promise((resolve,reject)=>{
         console.log('Retrieving Data from Database...');
-        db.poolTradingData.query(query,param,(err,data)=>{
+        db.poolCryptoData.query(query,param,(err,data)=>{
             if(err){
                reject(err);
             }
