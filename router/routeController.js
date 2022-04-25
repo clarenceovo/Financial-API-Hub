@@ -38,6 +38,7 @@ router.get('/equity/HK/getDailyMorningShortSelling',equityDataController.getDail
 router.get('/equity/HK/getDailyTotalShortSelling',equityDataController.getDailyTotalShortSelling);
 router.get('/equity/HK/getHSIFutureOI',equityDataController.getHSIFutureOI);
 router.get('/equity/HK/getHSIStockOptionOI',equityDataController.getHSIStockOptionOI);
+router.get('/equity/HK/getHSIIndexOptionOI',equityDataController.getHSIIndexOptionOI);
 
 
 

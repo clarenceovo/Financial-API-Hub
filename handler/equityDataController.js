@@ -44,5 +44,19 @@ module.exports={
             return res.json(responseParser.voidParam());
     },
 
+    getHSIIndexOptionOI:async(req,res)=>{
+        let strike =req.query.strike ?? null;
+        let type =req.query.type ?? null;
+        let month=req.query.month ?? null;
+        let start=req.query.start ?? null;
+        let end=req.query.end ?? null;
+
+        let data = await equityDataService.getHSIIndexOptionOI(strike,type,month,start,end);
+        if (data != null)
+            return res.json(responseParser.res(data));
+        else
+            return res.json(responseParser.voidParam());
+    }
+
 
 }

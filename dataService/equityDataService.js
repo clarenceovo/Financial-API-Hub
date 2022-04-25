@@ -98,4 +98,34 @@ module.exports={
          
     }),
 
+    getHSIIndexOptionOI:(async(strike,type,month,start,end)=>{
+        try{
+            var query_str = `SELECT record_date as date ,DATE_FORMAT(contract_month, '%Y-%m') AS contract_month,type,
+                            strike,open , high ,low ,close ,
+                            iv as implied_vol , open_interest ,volume, oi_change
+                            FROM equity_data.index_option_oi
+                            WHERE contract_month =?`;
+            var param = [month];
+            console.log(month);
+            if(strike != null){
+                query_str+=` AND strike = ? `;
+                param.push(strike)
+            }
+            if(type != null && ['C','P'].includes(type)){
+                console.log(type);
+                query_str+=` AND type = ? `;
+                param.push(type)
+            }
+            if(start != null && end != null){
+                query_str+=` AND  record_date between ? and ?`;
+                param.push(start);
+                param.push(end);
+            }
+            return await query(query_str,param);
+        }catch{
+            return null;
+        }
+         
+    }),
+
 }
