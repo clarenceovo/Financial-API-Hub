@@ -128,4 +128,18 @@ module.exports={
          
     }),
 
+    getStockHistData:(async(ticker,startDate,endDate)=>{
+        try{
+            var query_str = `SELECT index_ticker as name ,date as time,
+                            open , high ,low ,close ,volume
+                            FROM equity_data.price_ticker
+                            WHERE index_ticker =? and date between ? and ?;`;
+            var param = [ticker,startDate,endDate];
+            return await query(query_str,param);
+        }catch{
+            return null;
+        }
+         
+    })
+
 }
