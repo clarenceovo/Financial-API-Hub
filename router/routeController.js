@@ -4,7 +4,7 @@ var router = express.Router();
 const cryptoDataController = require('../handler/cryptoDataController');
 const equityDataController = require('../handler/equityDataController');
 const IGDataController = require('../handler/IGDataController');
-
+const fundamentalDataController = require('../handler/fundamentalDataController');
 router.use(function middleWare(req, res, next) {
    /* Log the Timestamp and IP  */
    /* TODO: Add AUTH validation */
@@ -31,6 +31,8 @@ router.get('/crypto/getHistData',cryptoDataController.getHistData);
 //Credit
 
 //Fundamental
+router.get('/fundamental/getCFTCInstrument',fundamentalDataController.getCFTCInstrument);
+router.get('/fundamental/getCFTCInstrumentRecordById',fundamentalDataController.getCFTCInstrumentRecordById);
 
 //HK Stock
 router.get('/equity/HK/getShortSellingByTicker',equityDataController.getShortSellingByTicker);

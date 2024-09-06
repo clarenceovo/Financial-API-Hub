@@ -10,12 +10,8 @@ async function query(query,paramList){
                 reject(err)
             }
             //console.log(data)
-            resolve(data);
-            
+            resolve(data);            
         });
-
-        
-
 
     });
 }

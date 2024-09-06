@@ -4,6 +4,7 @@ var dbCredentialTradingData = require('../../credential/dbCredential.json')
 var poolTradingData = mysql.createPool(dbCredentialTradingData['trading_data']);
 var poolEquityData = mysql.createPool(dbCredentialTradingData['equity_data']);
 var poolCryptoData = mysql.createPool(dbCredentialTradingData['crypto_data']);
+var poolFundamentalData = mysql.createPool(dbCredentialTradingData['fundamental_data']);
 poolTradingData.getConnection((err,connection)=> {
   if(err)
   throw err;
@@ -22,8 +23,15 @@ poolCryptoData.getConnection((err,connection)=> {
   console.log('Crypto Data Database connected successfully');
   connection.release();
 });
+poolFundamentalData.getConnection((err,connection)=> {
+  if(err)
+  throw err;
+  console.log('Crypto Data Database connected successfully');
+  connection.release();
+});
 module.exports = {
   poolTradingData:poolTradingData,
   poolEquityData:poolEquityData,
-  poolCryptoData:poolCryptoData
+  poolCryptoData:poolCryptoData,
+  poolFundamentalData:poolFundamentalData
 }
