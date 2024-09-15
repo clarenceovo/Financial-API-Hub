@@ -136,6 +136,31 @@ module.exports={
             return null;
         }
          
-    })
+    }),
+
+    getStockTicker:(async(tickerId,startStr,endStr)=>{
+
+        try{
+            var query_str = `SELECT * 
+                            FROM equity_data.price_ticker 
+                            WHERE tickerId = ? 
+                            AND date BETWEEN ? AND ?
+                            ORDER BY date;`;
+            var param = [tickerId,startStr,endStr];
+            return await query(query_str,param);
+        }catch{
+            return null;
+        }
+    }),
+
+    getStockTickerList:(async()=>{
+        try{
+            var query_str = `SELECT id, ticker , product_type 
+                            FROM equity_data.ticker_table;`;
+            return await query(query_str,[]);
+        }catch{
+            return null;
+        }
+    }),
 
 }

@@ -42,7 +42,8 @@ router.get('/equity/HK/getHSIFutureOI',equityDataController.getHSIFutureOI);
 router.get('/equity/HK/getHSIStockOptionOI',equityDataController.getHSIStockOptionOI);
 router.get('/equity/HK/getHSIIndexOptionOI',equityDataController.getHSIIndexOptionOI);
 router.get('/equity/getTickerHistData',equityDataController.getPriceTicker);
-
+router.get('/equity/getTicker',equityDataController.getTicker);
+router.get('/equity/getTickerList',equityDataController.getTickerList);
 
 
 //US Stock
