@@ -99,12 +99,11 @@ module.exports={
          },
 
       getHistData:async(req,res)=>{
-         let exchange = req.query.exchange ?? null;
          let ticker = req.query.ticker ?? null;
          let start = req.query.start ?? null;
          let end = req.query.end ?? null;
-         if (exchange && ticker && start && end){
-            let data = await cryptoDataService.getHistData(exchange,ticker,start,end);
+         if (ticker){
+            let data = await cryptoDataService.getHistData(ticker,start,end);
             return res.json(responseParser.res(data));
             
          }else{

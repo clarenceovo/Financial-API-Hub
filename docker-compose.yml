@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  fin_api:
+    container_name: fin_api_server
+    build: .
+    ports:
+      - "9888:9888"
+    environment:
+      - NODE_ENV=production
+
+    restart: always

@@ -78,14 +78,28 @@ module.exports={
                             ,[exchange,ticker,start,end]);
     
         }),
-    getHistData:(async(exchange,ticker,start,end)=>{
-        return await crypto_query(`SELECT datetime as date ,open , 
-                            high,low,close,volume FROM crypto_data.data_table a
-                            left join ticker_table b on a.ticker_id = b.ticker_id
-                            where exchange = ? and contract =?
-                            AND datetime between ? AND ?
-                            order by datetime asc  `
-        ,[exchange,ticker,start,end]);
+    getHistData:(async(ticker,start,end)=>{
+        const today = new Date();
+        if (!start) {
+            const oneYearAgo = new Date(today);
+            oneYearAgo.setFullYear(today.getFullYear() - 1);
+            start = oneYearAgo.toISOString().split('T')[0];
+        }
+        if (!end) {
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            end = tomorrow.toISOString().split('T')[0];
+        }
+    
+        const query = `
+        SELECT date, open, high, low, close, volume, volume_usd 
+        FROM crypto_data.crypto_ticker a
+        LEFT JOIN crypto_data.ticker_table b ON a.tickerId = b.Id
+        WHERE ticker = ? AND series_type = 7 AND type = 7
+        AND date BETWEEN ? AND ?
+        ORDER BY date DESC;`;
+
+        return await crypto_query(query, [ticker, start, end]);
 
 
 
