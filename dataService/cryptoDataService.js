@@ -97,7 +97,7 @@ module.exports={
         LEFT JOIN crypto_data.ticker_table b ON a.tickerId = b.Id
         WHERE ticker = ? AND series_type = 7 AND type = 7
         AND date BETWEEN ? AND ?
-        ORDER BY date DESC;`;
+        ORDER BY date ASC;`;
 
         return await crypto_query(query, [ticker, start, end]);
 
