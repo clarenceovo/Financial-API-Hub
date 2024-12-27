@@ -16,6 +16,21 @@ async function query(query,paramList){
     });
 }
 
+async function price_query(query,paramList){
+    let param = paramList ?? []
+    return new Promise((resolve,reject)=>{
+        console.log('Retrieving Data from Database...');
+        db.poolTradingData.query(query,param,(err,data)=>{
+            if(err){
+                reject(err)
+            }
+            //console.log(data)
+            resolve(data);            
+        });
+
+    });
+}
+
 
 module.exports={
 
@@ -158,6 +173,18 @@ module.exports={
             var query_str = `SELECT id, ticker , product_type 
                             FROM equity_data.ticker_table;`;
             return await query(query_str,[]);
+        }catch{
+            return null;
+        }
+    }),
+
+    getStockPriceByTicker:(async(ticker)=>{
+        try{
+            var query_str = `SELECT datetime, open, high, low, close, vol_usd AS volume 
+            FROM trading_data.price_ticker a 
+            LEFT JOIN trading_data.ticker_table b ON a.ticker_id = b.ticker_id 
+            WHERE b.ticker_symbol = ? ;`;
+            return await price_query(query_str,[ticker]);
         }catch{
             return null;
         }

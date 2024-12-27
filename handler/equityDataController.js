@@ -82,6 +82,15 @@ module.exports={
     getTickerList:async(req,res)=>{
         let data = await equityDataService.getStockTickerList();
         return res.json(responseParser.res(data));
-    }
+    },
 
+    getPrice:async(req,res)=>{
+        let symbol =req.query.symbol ?? null;
+        if (symbol){
+            let data = await equityDataService.getStockPriceByTicker(symbol);
+            return res.json(responseParser.res(data));
+        } else {
+            return res.json(responseParser.voidParam());
+        }
+    }
 }
