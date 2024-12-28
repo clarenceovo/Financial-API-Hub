@@ -92,5 +92,15 @@ module.exports={
         } else {
             return res.json(responseParser.voidParam());
         }
+    },
+
+    getCompanyInfo:async(req,res)=>{
+        let symbol =req.query.symbol ?? null;
+        if (symbol){
+            let data = await equityDataService.getCompanyInfo(symbol);
+            return res.json(responseParser.res(data));
+        } else {
+            return res.json(responseParser.voidParam());
+        }
     }
 }

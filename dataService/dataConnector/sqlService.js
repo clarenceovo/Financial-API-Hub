@@ -5,10 +5,11 @@ var poolTradingData = mysql.createPool(dbCredentialTradingData['trading_data']);
 var poolEquityData = mysql.createPool(dbCredentialTradingData['equity_data']);
 var poolCryptoData = mysql.createPool(dbCredentialTradingData['crypto_data']);
 var poolFundamentalData = mysql.createPool(dbCredentialTradingData['fundamental_data']);
+
 poolTradingData.getConnection((err,connection)=> {
   if(err)
   throw err;
-  console.log('Crypto Data Database connected successfully');
+  console.log('Trading Data Database connected successfully');
   connection.release();
 });
 poolEquityData.getConnection((err,connection)=> {

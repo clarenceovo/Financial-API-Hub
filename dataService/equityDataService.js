@@ -1,4 +1,6 @@
 var db= require('./dataConnector/sqlService.js');
+const redisClient= require('./dataConnector/redisService.js');
+const { json } = require('express');
 
 
 async function query(query,paramList){
@@ -31,6 +33,15 @@ async function price_query(query,paramList){
     });
 }
 
+async function redis_hget_query(key,field) {
+    try {
+        const value = await redisClient.hGet(key,field);
+        return value;
+    } catch (err) {
+        console.error('Error querying Redis:', err);
+        return null;
+    }
+}
 
 module.exports={
 
@@ -189,5 +200,24 @@ module.exports={
             return null;
         }
     }),
+
+    getCompanyInfo:(async(ticker)=>{
+
+        try{
+            idx = ['DJI',"SP500","NAS100"];
+            for (var i = 0; i < idx.length; i++){
+                var key = `MktData:StaticData:US:${idx[i]}:Info`;
+                var data = await redis_hget_query(key,ticker);
+                if (data != null){
+                    //data to json object
+                    return JSON.parse(data);
+                }
+            }
+            return null;
+        }catch{
+            return null
+        }
+    }),
+
 
 }

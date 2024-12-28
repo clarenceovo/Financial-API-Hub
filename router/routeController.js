@@ -45,7 +45,7 @@ router.get('/equity/getTickerHistData',equityDataController.getPriceTicker);
 router.get('/equity/getTicker',equityDataController.getTicker);
 router.get('/equity/getTickerList',equityDataController.getTickerList);
 router.get('/equity/getPrice',equityDataController.getPrice);
-
+router.get('/equity/getCompanyInfo',equityDataController.getCompanyInfo);
 
 //US Stock
 
