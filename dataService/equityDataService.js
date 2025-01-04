@@ -204,9 +204,9 @@ module.exports={
     getCompanyInfo:(async(ticker)=>{
 
         try{
-            idx = ['DJI',"SP500","NAS100"];
+            idx = [('US','DJI'),("US","SP500"),("US","NAS100"),("JP","NIKKEI225"),("HK","HSI")];
             for (var i = 0; i < idx.length; i++){
-                var key = `MktData:StaticData:US:${idx[i]}:Info`;
+                var key = `MktData:StaticData:${idx[i][0]}:${idx[i][1]}:Info`;
                 var data = await redis_hget_query(key,ticker);
                 if (data != null){
                     //data to json object
