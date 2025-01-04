@@ -203,19 +203,21 @@ module.exports={
 
     getCompanyInfo:(async(ticker)=>{
 
-        try{
-            idx = [('US','DJI'),("US","SP500"),("US","NAS100"),("JP","NIKKEI225"),("HK","HSI")];
-            for (var i = 0; i < idx.length; i++){
-                var key = `MktData:StaticData:${idx[i][0]}:${idx[i][1]}:Info`;
-                var data = await redis_hget_query(key,ticker);
-                if (data != null){
-                    //data to json object
+        try {
+            const idx = [['US', 'DJI'], ['US', 'SP500'], ['US', 'NAS100'], ['JP', 'NIKKEI225'], ['HK', 'HSI']];
+            for (let i = 0; i < idx.length; i++) {
+                const key = `MktData:StaticData:${idx[i][0]}:${idx[i][1]}:Info`;
+                console.log("Querying key:" + key);
+                const data = await redis_hget_query(key, ticker);
+                if (data != null) {
+                    // data to JSON object
                     return JSON.parse(data);
                 }
             }
             return null;
-        }catch{
-            return null
+        } catch (error) {
+            console.error('Error querying Redis:', error);
+            return null;
         }
     }),
 
