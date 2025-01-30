@@ -1,6 +1,14 @@
 const equityDataService = require('../dataService/equityDataService');
 const responseParser = require('./response/standardResponse');
 
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+
 module.exports={
     getShortSellingByTicker:async(req,res)=>{
         let ticker = req.query.ticker ?? null;
@@ -86,8 +94,12 @@ module.exports={
 
     getPrice:async(req,res)=>{
         let symbol =req.query.symbol ?? null;
+        let year_duration =req.query.year_duration ?? 5;
+        const now = new Date();
+        const from_date = new Date(now.getFullYear()-year_duration, now.getMonth(), now.getDate()); //get last 5 years data
+        
         if (symbol){
-            let data = await equityDataService.getStockPriceByTicker(symbol);
+            let data = await equityDataService.getStockPriceByTicker(symbol,formatDate(from_date));
             return res.json(responseParser.res(data));
         } else {
             return res.json(responseParser.voidParam());

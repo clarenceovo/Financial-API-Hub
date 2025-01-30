@@ -189,13 +189,13 @@ module.exports={
         }
     }),
 
-    getStockPriceByTicker:(async(ticker)=>{
+    getStockPriceByTicker:(async(ticker,from_date)=>{
         try{
             var query_str = `SELECT datetime, open, high, low, close, vol_usd AS volume 
             FROM trading_data.price_ticker a 
             LEFT JOIN trading_data.ticker_table b ON a.ticker_id = b.ticker_id 
-            WHERE b.ticker_symbol = ? ;`;
-            return await price_query(query_str,[ticker]);
+            WHERE b.ticker_symbol = ?  and datetime > ?;`;
+            return await price_query(query_str,[ticker,from_date]);
         }catch{
             return null;
         }
